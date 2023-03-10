@@ -20,7 +20,7 @@ const markupGallery = galleryItems
   )
   .join(" ");
 
-galleryRew.innerHTML = markupGallery;
+galleryRew.insertAdjacentHTML("afterbegin", markupGallery);
 console.log(galleryItems);
 
 // Реализация делегирования на div.gallery и получение url большого изображения.
@@ -40,12 +40,14 @@ function onPictureClick(event) {
 `);
 
   instance.show();
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.code === "Escape") {
+        instance.close();
+      }
+    },
+    { once: true }
+  );
 }
-
-// Добавь закрытие модального окна по нажатию клавиши Escape. Сделай так, чтобы прослушивание клавиатуры было только пока открыто модальное окно. У библиотеки basicLightbox есть метод для программного закрытия модального окна.
-
-galleryRew.addEventListener("keydown", (event) => {
-  if (event.code === "Escape") {
-    instance.close();
-  }
-});
