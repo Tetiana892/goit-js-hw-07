@@ -11,17 +11,20 @@ const markupGallery = galleryItems
   )
   .join(" ");
 
-galleryRew.innerHTML = markupGallery;
+galleryRew.insertAdjacentHTML("afterbegin", markupGallery);
 console.log(galleryItems);
-// galleryRew.addEventListener("click", onPictureClick);
 
-// function onPictureClick(event) {
-//   event.preventDefault();
+galleryRew.addEventListener("click", onPictureClick);
 
-//   if (!event.target.classList.contains("gallery__image")) {
-//     return;
-//   }
-// }
+function onPictureClick(event) {
+  event.preventDefault();
+
+  if (!event.target.classList.contains("gallery__image")) {
+    return;
+  }
+}
 let lightbox = new SimpleLightbox(".gallery a", {
-  /* options */
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250
 });
